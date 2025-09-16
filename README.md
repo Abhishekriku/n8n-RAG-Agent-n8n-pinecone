@@ -1,22 +1,32 @@
-# RAG Agent with n8n and Pinecone
+# RAG Agent with n8n + Pinecone (Document Q&A System)
 
 ## Problem
-Teams need accurate answers grounded in their own docs.
+
+Organizations often have unstructured documents (PDFs, reports, notes) stored in Google Drive or other sources. Searching these documents is slow, and traditional keyword search fails to capture semantic meaning.
+Teams need a way to query documents in natural language and get precise, context-aware answers.
 
 ## Solution (n8n)
-- Webhook / Telegram (query intake)
-- HTTP Request or File Node (load files)
-- Chunk & Embed (OpenAI embeddings)
-- Pinecone (upsert/query)
-- OpenAI (compose grounded answer)
-- Sheets/Notion (log Q&A + confidence)
 
-## Result
-- Faster response times and fewer manual steps.
-- Replace with real or demo metrics (e.g., first response < 2 min, 70% auto‑resolved).
+- This workflow implements a RAG pipeline using n8n, OpenAI, and Pinecone:
+- Google Drive Trigger → Watches for new documents uploaded.
+- Text Loader & Splitter → Extracts and splits documents into manageable chunks.
+- OpenAI Embeddings → Converts text chunks into vector embeddings.
+- Pinecone Vector Store → Stores embeddings for semantic search.
+- AI Agent → When a user sends a query, retrieves relevant context from Pinecone and generates a natural language answer.
+
+## Features
+
+- Automatic ingestion: New files from Google Drive are vectorized automatically.
+- Semantic search: Retrieves the most relevant chunks, not just keyword matches.
+- AI Q&A: OpenAI generates contextual responses grounded in your document data.
+- Memory-aware: Includes a simple memory store for conversational continuity.
 
 ## Stack
-n8n, OpenAI Embeddings, Pinecone, Telegram (optional), Google Sheets / Notion
+
+* n8n – automation platform
+* Google Drive – document source
+* OpenAI API – embeddings + LLM responses
+* Pinecone – vector database for retrieval
 
 ## How to Run (Demo)
 1. Import `workflow.json` into n8n (this export is sanitized; set your own credentials).
