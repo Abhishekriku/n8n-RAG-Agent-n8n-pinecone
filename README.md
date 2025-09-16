@@ -46,7 +46,8 @@ Teams need a way to query documents in natural language and get precise, context
 ```
 
 ## Screenshots
-![flow](screenshots/flow-overview.png)
+![flow](screenshots/Agent-retrieval-flow.png)
+
 
 ## Notes on Credentials & Safety
 - This repo does **not** include secrets. Configure credentials inside n8n.
